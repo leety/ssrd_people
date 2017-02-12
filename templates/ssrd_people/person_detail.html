@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ person.name }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+    {% include "aldryn_people/includes/person.html" with person=person detail_view="true" %}
+    {% if articles %}
+        <h2>{% trans "Articles:" %}</h2>
+        <ul>
+        {% for article in articles %}
+            <li><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock content %}
+
